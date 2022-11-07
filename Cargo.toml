@@ -1,0 +1,16 @@
+[package]
+name = "scratchstack-wrapper-aws-lc"
+description = "Scratchstack Rust wrapper around aws-lc general purpose cyrptographic library"
+authors = ["David Cuthbert <dacut@kanga.org>"]
+edition = "2021"
+homepage = "https://github.com/dacut/scratchstack-wrapper-aws-lc"
+license = "Apache-2.0"
+repository = "https://github.com/dacut/scratchstack-wrapper-aws-lc"
+version = "0.1.0-alpha.0"
+build = "build.rs"
+
+[build-dependencies]
+bindgen = "^0.61"
+
+[dependencies]
+libc = "^0.2"
