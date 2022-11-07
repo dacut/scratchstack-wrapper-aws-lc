@@ -4,27 +4,24 @@ use {
 };
 
 fn main() {
+    let root = var("CARGO_MANIFEST_DIR").expect("CARGO_MANIFEST_DIR not set");
     let out_dir = var("OUT_DIR").expect("OUT_DIR not set");
 
-    let aws_crt_prefix = match var("AWS_CRT_PREFIX") {
-        Ok(aws_crt_prefix) => {
-            println!("cargo:rustc-link-search={}/lib", aws_crt_prefix);
-            aws_crt_prefix
-        }
-        Err(_) => "/usr/local".to_string(),
-    };
+    if let Ok(aws_crt_prefix) = var("AWS_CRT_PREFIX") {
+        println!("cargo:rustc-link-search={aws_crt_prefix}/lib");
+    }
 
     println!("cargo:rustc-link-lib=crypto");
     println!("cargo:rustc-link-lib=ssl");
 
     let mut builder = builder()
-        .clang_arg(format!("-I{aws_crt_prefix}/include", aws_crt_prefix = aws_crt_prefix))
+        .clang_arg(format!("-I{root}/include"))
         .derive_debug(true)
         .derive_default(true)
         .derive_partialeq(true)
         .derive_eq(true);
 
-    let dir = format!("{aws_crt_prefix}/include/openssl");
+    let dir = format!("{root}/include/openssl");
     let mut n_includes = 0;
 
     for entry in read_dir(&dir).expect("Unable to list header files in include/openssl") {
