@@ -6,8 +6,19 @@ edition = "2021"
 homepage = "https://github.com/dacut/scratchstack-wrapper-aws-lc"
 license = "Apache-2.0"
 repository = "https://github.com/dacut/scratchstack-wrapper-aws-lc"
-version = "0.1.0-alpha.2"
+version = "0.1.0-alpha.3"
 build = "build.rs"
+include = [
+    "/include/openssl/*",
+    "/src",
+    "Cargo.toml",
+    "build.rs",
+]
+
+[lib]
+name = "scratchstack_wrapper_aws_lc"
+crate-type = ["lib"]
+doctest = false
 
 [build-dependencies]
 bindgen = "^0.61"
