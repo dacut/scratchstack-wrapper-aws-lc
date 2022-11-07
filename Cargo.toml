@@ -6,7 +6,7 @@ edition = "2021"
 homepage = "https://github.com/dacut/scratchstack-wrapper-aws-lc"
 license = "Apache-2.0"
 repository = "https://github.com/dacut/scratchstack-wrapper-aws-lc"
-version = "0.1.0-alpha.0"
+version = "0.1.0-alpha.2"
 build = "build.rs"
 
 [build-dependencies]
